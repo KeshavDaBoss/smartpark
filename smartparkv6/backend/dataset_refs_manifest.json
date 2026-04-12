@@ -1,0 +1,16 @@
+{
+  "dataset_root": "/Users/PrathamYadav/Documents/Projects/SmartPark/smartparkv6/dataset",
+  "cars_files": 1286,
+  "not_cars_files": 584,
+  "cars_refs": 1286,
+  "not_cars_refs": 584,
+  "cars_unreadable": 0,
+  "not_cars_unreadable": 0,
+  "has_pil": true,
+  "has_heif_support": true,
+  "hist_bins": [
+    24,
+    24
+  ],
+  "output_npz": "/Users/PrathamYadav/Documents/Projects/SmartPark/smartparkv6/backend/dataset_refs.npz"
+}

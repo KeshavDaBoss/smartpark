@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPark | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#dd8bfb",
+              "on-primary-fixed-variant": "#5a0179",
+              "secondary-container": "#006c4e",
+              "surface-bright": "#2c2c2c",
+              "inverse-surface": "#fcf9f8",
+              "surface": "#0e0e0e",
+              "on-primary-container": "#3d0055",
+              "on-tertiary-container": "#563e00",
+              "on-secondary-fixed": "#004933",
+              "on-error-container": "#ffb2b9",
+              "secondary-fixed-dim": "#71eaba",
+              "outline-variant": "#484847",
+              "on-primary": "#4f006c",
+              "error-dim": "#d73357",
+              "primary-dim": "#ce7eec",
+              "tertiary-fixed-dim": "#eeb200",
+              "on-secondary-fixed-variant": "#00694b",
+              "on-secondary-container": "#e0ffee",
+              "error-container": "#a70138",
+              "tertiary-container": "#ffbf00",
+              "tertiary-dim": "#eeb200",
+              "on-secondary": "#005e43",
+              "surface-dim": "#0e0e0e",
+              "on-background": "#ffffff",
+              "primary": "#e08efe",
+              "surface-container-high": "#201f1f",
+              "surface-container-low": "#131313",
+              "inverse-primary": "#893da7",
+              "surface-container-highest": "#262626",
+              "tertiary": "#ffd16f",
+              "primary-container": "#d180ef",
+              "on-tertiary-fixed": "#3d2b00",
+              "secondary": "#80f9c8",
+              "on-error": "#490013",
+              "surface-variant": "#262626",
+              "on-surface": "#ffffff",
+              "on-tertiary": "#614700",
+              "surface-container-lowest": "#000000",
+              "tertiary-fixed": "#ffbf00",
+              "surface-container": "#1a1919",
+              "secondary-dim": "#71eaba",
+              "on-tertiary-fixed-variant": "#614700",
+              "secondary-fixed": "#80f9c8",
+              "on-primary-fixed": "#21002f",
+              "primary-fixed-dim": "#ce7eec",
+              "background": "#0e0e0e",
+              "surface-tint": "#e08efe",
+              "error": "#ff6e84",
+              "inverse-on-surface": "#565555",
+              "on-surface-variant": "#adaaaa",
+              "outline": "#767575"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(14, 14, 14, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .kinetic-glow {
+            box-shadow: 0 0 20px rgba(224, 142, 254, 0.1);
+        }
+        .kinetic-glow:hover {
+            box-shadow: 0 0 30px rgba(224, 142, 254, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-10 py-6 max-w-full z-50 glass-header shadow-[0_20px_40px_rgba(224,142,254,0.06)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-primary font-headline">SmartPark</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold border-2 border-primary/20 cursor-pointer hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-32 px-6 md:px-10 pb-20">
+<!-- Hero Section / Editorial Headline -->
+<section class="max-w-7xl mx-auto mb-16">
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tight mb-4">Find your <span class="text-primary">space.</span></h1>
+</section>
+<!-- Search & Filter Bar -->
+<section class="max-w-7xl mx-auto mb-12">
+<div class="flex flex-col md:flex-row gap-4 items-stretch">
+<div class="flex-grow relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-4 pl-14 pr-6 focus:ring-2 focus:ring-primary/50 text-on-surface placeholder:text-outline transition-all duration-300" placeholder="Search premier shopping malls or districts..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-bold rounded-xl kinetic-glow hover:scale-[1.02] active:scale-95 transition-all font-label">
+                        Search
+                    </button>
+</div>
+</div>
+<!-- Quick Chips -->
+</section>
+<!-- Mall Cards Grid -->
+<section class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Mall 1 -->
+<div class="group relative bg-surface-container-low rounded-[2rem] overflow-hidden border border-outline-variant/10 transition-all duration-500 hover:border-primary/30 kinetic-glow">
+<div class="relative h-80 w-full overflow-hidden">
+<img alt="Mall 1 Architecture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="ultra-modern glass and steel shopping mall exterior at dusk with cinematic purple and blue neon lighting reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB531JPfIOjWeuS0TpLo3fx0vv1cdcUIhziK2fBUc1dxoCIdhLUm-mWmrq04iPORjoPTZJWeG6DoGJxiex_h98eqcHZaay-rhid42lft9UZplaWf3rDYCfWrG0KknODhU1lNXUqchzJYjK3nE89e4J2sUIeptT_SJPvhdKa0sqoaycoerWqRZ6tIqnRfqNxOGP-OgT3AAdKMSKGi-Un7eSeG7Yy5cMC57bHxsOTBKtsHBizKLP43FSBAm-42G9fIVGcHEm3E6ep7_w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-3xl font-bold mb-1">Mall 1</h3>
+</div>
+<div class="text-right">
+<span class="block font-headline text-4xl font-bold text-secondary">42</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Spots Left</span>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<button class="flex-grow py-4 bg-surface-container-highest hover:bg-primary hover:text-on-primary-container text-on-surface font-bold rounded-xl transition-all duration-300 font-label flex items-center justify-center gap-2">
+                            View Availability
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="p-4 bg-surface-container-highest rounded-xl hover:text-primary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Mall 2 -->
+<div class="group relative bg-surface-container-low rounded-[2rem] overflow-hidden border border-outline-variant/10 transition-all duration-500 hover:border-primary/30 kinetic-glow">
+<div class="relative h-80 w-full overflow-hidden">
+<img alt="Mall 2 Architecture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="high-end luxury shopping mall interior with marble floors and curved architectural elements in warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG63uR4cz-zel7EJVv6ZPxplzsjSqkCTdk73P-7jUVTxr9ZH4XNxW7ez5r1hfQl_deK_pCTOsocoY_2yZom7A4MqW4gG9Ueb71yf-J8RVNaBm5Sl-RxvOBk0KuQ1ghCq-GqiDc-xEYpwms3_CFfSLFvlAoPt5CJSK6DrYY--24NLArjltPeRyFXgKXD1SbEI2an6I7FVx-3i7HHZrjUNaC4UWnDOcfAla14UgpHwBWZphPBGOq0EmK5ZDGiVTyaOBxhTCte10dWmI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-3xl font-bold mb-1">Mall 2</h3>
+</div>
+<div class="text-right">
+<span class="block font-headline text-4xl font-bold text-tertiary">12</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Limited Spots</span>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<button class="flex-grow py-4 bg-surface-container-highest hover:bg-primary hover:text-on-primary-container text-on-surface font-bold rounded-xl transition-all duration-300 font-label flex items-center justify-center gap-2">
+                            View Availability
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="p-4 bg-surface-container-highest rounded-xl hover:text-primary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Mobile Bottom View / Integrated Layout) -->
+<!-- Note: Following the responsive pivot rule, on mobile we use a Bottom Nav style if top bar is simplified -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-low flex justify-around items-center py-4 border-t border-outline-variant/10 z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-label">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="text-[10px] font-label">Bookings</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-label">Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label">Settings</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-10 py-8 mt-auto border-t border-outline-variant/15 bg-transparent">
+<span class="text-[12px] font-inter uppercase tracking-widest text-on-surface-variant mb-4 md:mb-0">© 2024 SmartPark v2.0.1 Kinetic Void</span>
+<div class="flex gap-8">
+<a class="text-[12px] font-inter uppercase tracking-widest text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Privacy Policy</a>
+<a class="text-[12px] font-inter uppercase tracking-widest text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Terms of Service</a>
+<a class="text-[12px] font-inter uppercase tracking-widest text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Support</a>
+</div>
+</footer>
+</body></html>

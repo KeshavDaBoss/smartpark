@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPark | ROI Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-panel {
+      background: rgba(19, 19, 19, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .neon-glow-purple:hover {
+      box-shadow: 0 0 15px rgba(224, 142, 254, 0.4);
+    }
+    .neon-glow-secondary:hover {
+      box-shadow: 0 0 15px rgba(128, 249, 200, 0.4);
+    }
+    .roi-overlay {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(224, 142, 254, 0.1),
+        rgba(224, 142, 254, 0.1) 10px,
+        rgba(224, 142, 254, 0.05) 10px,
+        rgba(224, 142, 254, 0.05) 20px
+      );
+      border: 2px dashed #e08efe;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#0e0e0e",
+            "inverse-on-surface": "#565555",
+            "tertiary-dim": "#eeb200",
+            "inverse-surface": "#fcf9f8",
+            "surface-variant": "#262626",
+            "on-surface-variant": "#adaaaa",
+            "on-primary-container": "#3d0055",
+            "on-secondary-fixed": "#004933",
+            "surface-tint": "#e08efe",
+            "on-error-container": "#ffb2b9",
+            "primary-container": "#d180ef",
+            "on-primary": "#4f006c",
+            "surface-dim": "#0e0e0e",
+            "on-secondary-container": "#e0ffee",
+            "on-secondary": "#005e43",
+            "tertiary-fixed-dim": "#eeb200",
+            "on-secondary-fixed-variant": "#00694b",
+            "on-tertiary-fixed-variant": "#614700",
+            "surface-container-highest": "#262626",
+            "outline-variant": "#484847",
+            "primary-fixed": "#dd8bfb",
+            "error": "#ff6e84",
+            "primary": "#e08efe",
+            "error-dim": "#d73357",
+            "primary-dim": "#ce7eec",
+            "tertiary": "#ffd16f",
+            "on-surface": "#ffffff",
+            "surface-container-high": "#201f1f",
+            "secondary": "#80f9c8",
+            "secondary-fixed-dim": "#71eaba",
+            "on-error": "#490013",
+            "tertiary-container": "#ffbf00",
+            "outline": "#767575",
+            "inverse-primary": "#893da7",
+            "secondary-fixed": "#80f9c8",
+            "error-container": "#a70138",
+            "surface": "#0e0e0e",
+            "on-tertiary-fixed": "#3d2b00",
+            "on-primary-fixed": "#21002f",
+            "secondary-dim": "#71eaba",
+            "on-background": "#ffffff",
+            "on-tertiary": "#614700",
+            "tertiary-fixed": "#ffbf00",
+            "surface-container": "#1a1919",
+            "secondary-container": "#006c4e",
+            "surface-container-lowest": "#000000",
+            "on-tertiary-container": "#563e00",
+            "surface-container-low": "#131313",
+            "surface-bright": "#2c2c2c",
+            "on-primary-fixed-variant": "#5a0179",
+            "primary-fixed-dim": "#ce7eec"
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex items-center justify-center p-4 md:p-10">
+<!-- Modal Overlay Container -->
+<div class="fixed inset-0 bg-surface-container-lowest/90 z-40"></div>
+<!-- Main Configuration Modal -->
+<main class="relative z-50 w-full max-w-7xl glass-panel rounded-xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8)] border border-outline-variant/10 flex flex-col max-h-[921px]">
+<!-- Top Bar -->
+<header class="flex flex-wrap items-center justify-between px-8 py-6 border-b border-outline-variant/10 gap-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">settings_video_camera</span>
+<h1 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Configure Regions of Interest</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-highest text-tertiary font-medium hover:bg-tertiary/10 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">ink_eraser</span>
+          Clear Slot
+        </button>
+<button class="px-6 py-2.5 rounded-xl text-on-surface-variant font-medium hover:text-on-surface transition-all">
+          Cancel
+        </button>
+<button class="flex items-center gap-2 px-8 py-2.5 rounded-xl bg-secondary text-on-secondary-container font-bold neon-glow-secondary transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">save</span>
+          Save Configuration
+        </button>
+</div>
+</header>
+<!-- Modal Body Content -->
+<div class="flex-1 overflow-hidden flex flex-col lg:flex-row">
+<!-- Left Sidebar: Controls & Instructions -->
+<aside class="w-full lg:w-80 border-r border-outline-variant/10 p-6 space-y-8 overflow-y-auto">
+<!-- Camera Selection -->
+<section>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4 font-label">Camera Interface</label>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-1.5 rounded-xl">
+<button class="px-4 py-2.5 rounded-lg bg-surface-container-highest text-primary font-bold text-sm transition-all border border-primary/20">
+              Camera 1
+            </button>
+<button class="px-4 py-2.5 rounded-lg text-on-surface-variant font-medium text-sm hover:text-on-surface transition-all">
+              Camera 2
+            </button>
+</div>
+</section>
+<!-- Instructions -->
+<section class="bg-surface-container-low/50 rounded-xl p-5 border border-outline-variant/5">
+<label class="block text-xs font-bold uppercase tracking-widest text-primary mb-3 font-label">Configuration Steps</label>
+<ol class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20">1</span>
+<p>Select a <span class="text-on-surface">slot ID</span> from the grid below to focus.</p>
+</li>
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20">2</span>
+<p>Click and drag on the <span class="text-on-surface">live feed</span> to paint the ROI area.</p>
+</li>
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20">3</span>
+<p>Verify boundary and click <span class="text-on-surface">Save</span> when all slots are configured.</p>
+</li>
+</ol>
+</section>
+<!-- Slot ID Grid -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Slot Directory</label>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant">Zone M2</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Active Slot -->
+<button class="px-3 py-4 rounded-xl bg-surface-container-highest border-2 border-primary text-primary text-xs font-bold flex flex-col items-center gap-1 neon-glow-purple">
+<span class="text-[10px] opacity-60">ID</span>
+              M2-L1-S1
+            </button>
+<!-- Other Slots -->
+<button class="px-3 py-4 rounded-xl bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium flex flex-col items-center gap-1 hover:border-on-surface-variant/30 hover:bg-surface-container transition-all">
+<span class="text-[10px] opacity-40">ID</span>
+              M2-L1-S2
+            </button>
+<button class="px-3 py-4 rounded-xl bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium flex flex-col items-center gap-1 hover:border-on-surface-variant/30 hover:bg-surface-container transition-all">
+<span class="text-[10px] opacity-40">ID</span>
+              M2-L1-S3
+            </button>
+<button class="px-3 py-4 rounded-xl bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium flex flex-col items-center gap-1 hover:border-on-surface-variant/30 hover:bg-surface-container transition-all">
+<span class="text-[10px] opacity-40">ID</span>
+              M2-L1-S4
+            </button>
+<button class="px-3 py-4 rounded-xl bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium flex flex-col items-center gap-1 hover:border-on-surface-variant/30 hover:bg-surface-container transition-all">
+<span class="text-[10px] opacity-40">ID</span>
+              M2-L1-S5
+            </button>
+<button class="px-3 py-4 rounded-xl bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium flex flex-col items-center gap-1 hover:border-on-surface-variant/30 hover:bg-surface-container transition-all">
+<span class="text-[10px] opacity-40">ID</span>
+              M2-L1-S6
+            </button>
+</div>
+</section>
+</aside>
+<!-- Right Main: Canvas Area -->
+<section class="flex-1 bg-surface-container-lowest relative group cursor-crosshair overflow-hidden">
+<!-- Live Feed Simulation -->
+<div class="absolute inset-0 z-0">
+<img alt="overhead view of a modern semi-lit underground parking garage with asphalt flooring and white painted lines" class="w-full h-full object-cover opacity-60 grayscale-[0.3]" data-alt="overhead view of a modern semi-lit underground parking garage with asphalt flooring and white painted lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUTzZ_9rJ9R12VPJXW_8ih4f6o_JFv5qAPwAfoSSMTMAud9Xf1Ep-QLJv-cmAI8IxTm3w4T_JmSEhrbPPgs5UjCVm-Y7M2wBjNTto0I3pPIX2qQfQQOn6WtFC9VFeuHF_xc_RY3tm_XsCAb3PmsnPx16ksrLKft_hcxolNUo8ZR4IpsoGH6z0Q-wOoPHEgspLI5KpssbFhaJpvWy-w8sB9QZ0WyKS6iKFURURfo_tQBaNNqrIUq8AskYDpsiLH2Wdf7EhqlNdaPoA"/>
+<!-- Vignette & Scanning Effect -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 pointer-events-none"></div>
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
+</div>
+<!-- ROI Canvas Overlay -->
+<div class="absolute inset-0 z-10 p-10 flex items-center justify-center">
+<div class="relative w-full h-full border-2 border-primary/20 rounded-lg">
+<!-- Mock ROI Box 1 (Active) -->
+<div class="absolute top-[20%] left-[30%] w-[150px] h-[220px] roi-overlay flex items-center justify-center">
+<div class="px-2 py-1 bg-primary text-on-primary-fixed text-[10px] font-black rounded-sm absolute -top-4 left-0">ACTIVE: M2-L1-S1</div>
+<div class="absolute inset-0 border border-primary animate-pulse"></div>
+</div>
+<!-- Mock ROI Box 2 (Completed) -->
+<div class="absolute top-[22%] left-[45%] w-[150px] h-[220px] bg-secondary/10 border-2 border-secondary/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+<!-- ROI Tooltip -->
+<div class="absolute bottom-10 right-10 bg-surface-container-highest/90 border border-outline-variant/20 px-4 py-3 rounded-xl backdrop-blur-md flex items-center gap-3 shadow-2xl">
+<div class="w-3 h-3 rounded-full bg-error animate-ping"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Live Feed Status</span>
+<span class="text-xs font-headline font-medium text-on-surface">60 FPS | 4K UHD</span>
+</div>
+</div>
+<!-- Crosshair Guide -->
+<div class="absolute top-0 bottom-0 left-1/2 w-[1px] bg-white/5 pointer-events-none"></div>
+<div class="absolute left-0 right-0 top-1/2 h-[1px] bg-white/5 pointer-events-none"></div>
+</div>
+</div>
+<!-- Camera HUD Overlays -->
+<div class="absolute top-6 left-6 z-20 flex gap-2">
+<span class="px-2 py-1 rounded bg-black/60 backdrop-blur border border-white/10 text-[10px] font-mono text-on-surface-variant">CAM_ID: SP_PRK_M2_001</span>
+<span class="px-2 py-1 rounded bg-black/60 backdrop-blur border border-white/10 text-[10px] font-mono text-on-surface-variant">UTC: 2024-05-24 14:22:01</span>
+</div>
+<div class="absolute bottom-6 left-6 z-20">
+<div class="flex items-center gap-2 bg-black/40 backdrop-blur rounded-full px-4 py-2 border border-white/5">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">zoom_in</span>
+<input class="w-32 h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Stats -->
+<footer class="px-8 py-4 bg-surface-container border-t border-outline-variant/10 flex items-center justify-between">
+<div class="flex gap-6">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest font-label">Configuration Progress</span>
+<div class="flex items-center gap-3 mt-1">
+<div class="w-48 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-1/3 h-full bg-primary"></div>
+</div>
+<span class="text-xs font-bold text-primary">1 / 6 Slots</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#80f9c8]"></span>
+<span class="text-xs font-medium text-on-surface-variant">System Ready</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
+<span class="text-xs font-medium text-on-surface-variant">V2.4 ROI-Engine</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- Global Glass Background Decoration -->
+<div class="fixed -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed -bottom-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+</body></html>

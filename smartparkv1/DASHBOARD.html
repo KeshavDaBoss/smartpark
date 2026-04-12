@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SmartPark — Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#555;
+      --slot-free: #00cc44;
+      --slot-occupied: #cc2222;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:#fff;background:#555;background:url('847e456c-0f3b-4012-8b5c-47ecf53b564f.jpg') center/cover no-repeat fixed;}
+
+    .wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px;background:rgba(0,0,0,0.5)}
+
+    header{width:100%;max-width:980px;display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+    .brand{display:flex;flex-direction:column;gap:6px}
+    .title{font-size:42px;font-weight:700;letter-spacing:2px;color:#fff}
+
+    .card{width:100%;max-width:980px;border-radius:12px;padding:28px;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center}
+
+    .parking{display:flex;gap:18px;align-items:flex-start}
+    .slot{width:220px;height:120px;border:3px solid #aaa;border-radius:2px;position:relative;background:transparent;transition:border-color .1s linear}
+    .slot.free{border-color:var(--slot-free)}
+    .slot.occupied{border-color:var(--slot-occupied)}
+
+    .slot-label{position:absolute;bottom:-30px;width:100%;text-align:center;color:#fff;font-size:14px;letter-spacing:1px}
+
+    #connectBtn{position:fixed;right:18px;bottom:18px;background:#333;border:1px solid #666;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer}
+    #connectBtn:hover{background:#444}
+
+    @media (max-width:820px){.parking{flex-direction:column;}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="title">SmartPark</div>
+      </div>
+      <div>Status: <span id="connStatus">Disconnected</span></div>
+    </header>
+
+    <main class="card" role="main">
+      <div class="parking" id="parkingArea">
+        <div class="slot free" id="slot1" aria-label="Slot 1">
+          <div class="slot-label">Slot 1</div>
+        </div>
+        <div class="slot free" id="slot2" aria-label="Slot 2">
+          <div class="slot-label">Slot 2</div>
+        </div>
+      </div>
+    </main>
+
+    <button id="connectBtn">Connect</button>
+  </div>
+
+  <script>
+    const slot1 = document.getElementById('slot1');
+    const slot2 = document.getElementById('slot2');
+    const connStatus = document.getElementById('connStatus');
+    const connectBtn = document.getElementById('connectBtn');
+    let port=null;let reader=null;let keepReading=false;
+
+    function setSlot(el,state){
+      if(state==='FREE'){
+        el.classList.remove('occupied');
+        el.classList.add('free');
+      }else{
+        el.classList.remove('free');
+        el.classList.add('occupied');
+      }
+    }
+
+    function handleLine(line){
+      line=line.trim().toUpperCase();
+      console.log("RAW:", line);
+
+      // Handle combined format: SLOT1:FREE  |  SLOT2:OCCUPIED
+      const slot1Match=line.match(/SLOT1\s*:\s*(FREE|OCCUPIED)/);
+      const slot2Match=line.match(/SLOT2\s*:\s*(FREE|OCCUPIED)/);
+
+      if(slot1Match){
+        setSlot(slot1, slot1Match[1]);
+      }
+      if(slot2Match){
+        setSlot(slot2, slot2Match[1]);
+      }
+    }
+
+    async function readLoop(port){
+      const decoder=new TextDecoderStream();
+      port.readable.pipeTo(decoder.writable);
+      reader=decoder.readable.getReader();
+      let buffer='';
+      keepReading=true;
+      try{
+        while(keepReading){
+          const {value,done}=await reader.read();
+          if(done)break;
+          if(value){
+            buffer+=value;
+            const lines=buffer.split(/\r?\n/);
+            buffer=lines.pop();
+            lines.forEach(l=>handleLine(l));
+          }
+        }
+      }catch(e){console.warn('readLoop error',e);}finally{if(reader){try{await reader.cancel();}catch(e){}reader=null;}}
+    }
+
+    async function connect(){
+      if(port){
+        keepReading=false;
+        if(reader){try{await reader.cancel();}catch(e){}reader=null;}
+        if(port){try{await port.close();}catch(e){}port=null;}
+        connStatus.textContent='Disconnected';
+        connectBtn.textContent='Connect';
+        return;
+      }
+      try{
+        port=await navigator.serial.requestPort();
+        await port.open({baudRate:9600});
+        connStatus.textContent='Connected';
+        connectBtn.textContent='Disconnect';
+        readLoop(port);
+      }catch(e){console.warn('connect failed',e);}
+    }
+
+    connectBtn.addEventListener('click',connect);
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+:root {
+    --primary: #5c2d91;
+    /* Dull Purple */
+    --secondary: #2e4d32;
+    /* Dull Green */
+    --accent: #7b52ab;
+    /* Muted Violet */
+    --text: #e0e0e0;
+    --bg: #121212;
+    --bg-card: #1f1f1f;
+    --error: #e53935;
+    --success: #4caf50;
+
+    /* Slot Colors - Muted */
+    --slot-free: #4caf50;
+    /* Muted Green */
+    --slot-occupied: #e53935;
+    /* Muted Red */
+    --slot-booked: #1976d2;
+    /* Muted Blue */
+    --slot-my-booking: #7c4dff;
+    /* Deep Purple */
+
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: dark;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+button {
+    border-radius: 6px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+button:hover {
+    background-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.input-field {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,170 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar .header {
+  margin-bottom: 30px;
+}
+
+.sidebar .logo {
+  width: 150px;
+}
+
+.sidebar nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav a {
+  padding: 15px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+.sidebar nav a:hover {
+  background-color: #5a4d9c;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.page {
+  display: none;
+}
+
+h2 {
+  color: #8a2be2; /* BlueViolet */
+}
+
+.login-section, .bookings-section {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+input, button {
+  width: calc(100% - 22px);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #2c2c2c;
+  color: #fff;
+  font-size: 1em;
+}
+
+button {
+  background-color: #6a5acd; /* SlateBlue */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #5a4d9c;
+}
+
+#msg {
+  color: #ff4d4d;
+}
+
+.parking-lot {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 25px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px 0;
+}
+
+.entry-lane {
+  grid-row: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1.5em;
+}
+
+.slot {
+  height: 150px;
+  border: 3px solid #444;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.slot-id {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.slot-status {
+  font-size: 1em;
+  margin-top: 8px;
+}
+
+.slot.available {
+  background-color: #2e8b57; /* SeaGreen */
+  border-color: #3cb371;
+}
+
+.slot.occupied {
+  background-color: #cd5c5c; /* LightRed */
+  border-color: #f08080;
+}
+
+.slot.booked-today {
+  background-color: #4682b4; /* SteelBlue */
+  border-color: #5f9ea0;
+}
+
+#my div, .booking-option {
+  background-color: #2c2c2c;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-option button {
+    width: auto;
+    margin-left: 10px;
+}

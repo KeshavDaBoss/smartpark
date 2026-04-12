@@ -1,0 +1,74 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node / Vite
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Arduino / PlatformIO
+*.bin
+*.elf
+*.map
+.pio/
+
+# ML / datasets / caches
+*.pt
+*.onnx
+*.h5
+*.npz
+*.npy
+*.pkl
+.cache/
+
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Runtime artifacts
+tmp/
+temp/
+*.pid
+*.seed

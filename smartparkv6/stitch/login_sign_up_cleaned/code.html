@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPark | Kinetic Void Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#dd8bfb",
+              "on-primary-fixed-variant": "#5a0179",
+              "secondary-container": "#006c4e",
+              "surface-bright": "#2c2c2c",
+              "inverse-surface": "#fcf9f8",
+              "surface": "#0e0e0e",
+              "on-primary-container": "#3d0055",
+              "on-tertiary-container": "#563e00",
+              "on-secondary-fixed": "#004933",
+              "on-error-container": "#ffb2b9",
+              "secondary-fixed-dim": "#71eaba",
+              "outline-variant": "#484847",
+              "on-primary": "#4f006c",
+              "error-dim": "#d73357",
+              "primary-dim": "#ce7eec",
+              "tertiary-fixed-dim": "#eeb200",
+              "on-secondary-fixed-variant": "#00694b",
+              "on-secondary-container": "#e0ffee",
+              "error-container": "#a70138",
+              "tertiary-container": "#ffbf00",
+              "tertiary-dim": "#eeb200",
+              "on-secondary": "#005e43",
+              "surface-dim": "#0e0e0e",
+              "on-background": "#ffffff",
+              "primary": "#e08efe",
+              "surface-container-high": "#201f1f",
+              "surface-container-low": "#131313",
+              "inverse-primary": "#893da7",
+              "surface-container-highest": "#262626",
+              "tertiary": "#ffd16f",
+              "primary-container": "#d180ef",
+              "on-tertiary-fixed": "#3d2b00",
+              "secondary": "#80f9c8",
+              "on-error": "#490013",
+              "surface-variant": "#262626",
+              "on-tertiary": "#614700",
+              "surface-container-lowest": "#000000",
+              "tertiary-fixed": "#ffbf00",
+              "surface-container": "#1a1919",
+              "secondary-dim": "#71eaba",
+              "on-tertiary-fixed-variant": "#614700",
+              "secondary-fixed": "#80f9c8",
+              "on-primary-fixed": "#21002f",
+              "on-surface": "#ffffff",
+              "primary-fixed-dim": "#ce7eec",
+              "background": "#0e0e0e",
+              "surface-tint": "#e08efe",
+              "error": "#ff6e84",
+              "inverse-on-surface": "#565555",
+              "on-surface-variant": "#adaaaa",
+              "outline": "#767575"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: rgba(19, 19, 19, 0.7);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .kinetic-glow {
+            box-shadow: 0 0 60px -15px rgba(224, 142, 254, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .luminous-btn {
+            background: linear-gradient(135deg, #e08efe 0%, #ce7eec 100%);
+        }
+        .luminous-btn:hover {
+            box-shadow: 0 0 20px 2px rgba(224, 142, 254, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-center selection:bg-primary selection:text-on-primary-container">
+<!-- Background Decorative Elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-secondary/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Main Content Shell -->
+<main class="w-full max-w-md px-6 py-12 flex flex-col items-center">
+<!-- Logo Header -->
+<div class="mb-12 text-center">
+<h1 class="text-5xl font-bold tracking-tighter font-headline text-primary-fixed mb-2">SmartPark</h1>
+</div>
+<!-- Auth Card -->
+<div class="glass-card w-full p-8 rounded-[2rem] border border-outline-variant/10 kinetic-glow relative overflow-hidden">
+<!-- Auth Mode Tabs -->
+<div class="flex items-center justify-between mb-10 bg-surface-container-lowest/50 p-1.5 rounded-full border border-outline-variant/5">
+<button class="flex-1 py-2.5 px-6 rounded-full text-sm font-semibold transition-all duration-300 bg-surface-container-highest text-primary-fixed">
+                    Login
+                </button>
+<button class="flex-1 py-2.5 px-6 rounded-full text-sm font-semibold transition-all duration-300 text-on-surface-variant hover:text-on-surface">
+                    Sign Up
+                </button>
+</div>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-medium text-on-surface-variant uppercase tracking-wider ml-1">Username</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="account_circle">account_circle</span>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-4 pl-12 pr-4 text-sm focus:ring-1 focus:ring-primary transition-all placeholder:text-outline" placeholder="Enter your identifier" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-medium text-on-surface-variant uppercase tracking-wider ml-1">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="lock">lock</span>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-4 pl-12 pr-4 text-sm focus:ring-1 focus:ring-primary transition-all placeholder:text-outline" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Signup Specific Options (Hidden in Login Mode - displayed here for layout context) -->
+<div class="space-y-4 pt-2 hidden">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-outline-variant bg-surface-container-highest text-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute opacity-0 peer-checked:opacity-100 text-on-primary-container text-xs pointer-events-none left-1/2 -translate-x-1/2" data-icon="check" data-weight="fill">check</span>
+</div>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Disabled parking needed</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-outline-variant bg-surface-container-highest text-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute opacity-0 peer-checked:opacity-100 text-on-primary-container text-xs pointer-events-none left-1/2 -translate-x-1/2" data-icon="check" data-weight="fill">check</span>
+</div>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Elderly user profile</span>
+</label>
+</div>
+<!-- Primary CTA -->
+<button class="luminous-btn w-full py-4 rounded-xl text-on-primary-container font-bold text-sm uppercase tracking-widest transition-all mt-4" type="submit">
+                    Access System
+                </button>
+</form>
+<!-- Mode Toggle Link -->
+<div class="mt-8 text-center">
+<a class="text-xs text-on-surface-variant hover:text-primary transition-colors inline-flex items-center gap-1" href="#">
+                    Don't have an account? <span class="text-primary font-semibold">Sign Up</span>
+</a>
+</div>
+</div>
+<!-- Demo Login Section -->
+<div class="mt-12 w-full">
+<div class="flex items-center gap-4 mb-6">
+<div class="h-[1px] flex-1 bg-outline-variant/20"></div>
+<span class="text-[10px] uppercase tracking-[0.3em] text-outline font-bold">Quick Access Demo</span>
+<div class="h-[1px] flex-1 bg-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-surface-container-low border border-outline-variant/10 py-3 px-4 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-all group">
+<span class="text-xs text-on-surface-variant group-hover:text-on-surface">User 1 (Normal)</span>
+<span class="material-symbols-outlined text-sm text-primary/40 group-hover:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-surface-container-low border border-outline-variant/10 py-3 px-4 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-all group">
+<span class="text-xs text-on-surface-variant group-hover:text-on-surface">User 2 (Disabled)</span>
+<span class="material-symbols-outlined text-sm text-primary/40 group-hover:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-surface-container-low border border-outline-variant/10 py-3 px-4 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-all group">
+<span class="text-xs text-on-surface-variant group-hover:text-on-surface">User 3 (Elderly)</span>
+<span class="material-symbols-outlined text-sm text-primary/40 group-hover:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-surface-container-low border border-outline-variant/10 py-3 px-4 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-all group">
+<span class="text-xs text-on-surface-variant group-hover:text-on-surface">User 4 (Admin)</span>
+<span class="material-symbols-outlined text-sm text-primary/40 group-hover:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Meta (Shared Component Inspired) -->
+<footer class="w-full mt-auto py-10 px-10 flex flex-col md:flex-row justify-between items-center border-t border-outline-variant/10 space-y-4 md:space-y-0">
+<p class="text-[10px] font-body text-on-surface-variant uppercase tracking-[0.2em]">
+            © 2024 SmartPark
+        </p>
+<div class="flex gap-8">
+<a class="text-[10px] font-body text-on-surface-variant uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] font-body text-on-surface-variant uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-[10px] font-body text-on-surface-variant uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</footer>
+<!-- Decorative Image (Map Background Abstract) -->
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] pointer-events-none opacity-10 blur-[60px]">
+<img alt="abstract urban data flow" class="w-full h-full object-cover rounded-full" data-alt="abstract top-down view of urban city grid at night with flowing neon purple and teal light trails representing data flow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEj07SEQSejgcOKrfl2aWro0a7S4nBrNqK-D04QvWdfyS-ZbxM3r0d1jv3A9acaFzWmfs_JL7uYIfaoplzI3ajYBpXVsginaP0dDWBEwA_kVUI3m59VYL213zjZd6CCo5V2OIk7-LCiJ_81SnkkX_kJzDvddST58D5yDKVb-K-6wnXa-SB2CdJrg4Bf_tUb2ohV06kWqvAu6jAaNX87QI7FIqvmS8WizWl5ko0f0rIzpJwQHd4U28P2ESWrOs6iu8G8ZFWOFi3qIo"/>
+</div>
+</body></html>

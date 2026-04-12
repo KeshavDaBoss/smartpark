@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#a70138",
+              "on-primary": "#4f006c",
+              "on-tertiary-container": "#563e00",
+              "secondary-fixed-dim": "#71eaba",
+              "on-secondary-container": "#e0ffee",
+              "primary-fixed-dim": "#ce7eec",
+              "secondary-fixed": "#80f9c8",
+              "on-primary-fixed-variant": "#5a0179",
+              "on-primary-fixed": "#21002f",
+              "background": "#0e0e0e",
+              "on-surface-variant": "#adaaaa",
+              "tertiary-dim": "#eeb200",
+              "surface-bright": "#2c2c2c",
+              "error": "#ff6e84",
+              "primary-fixed": "#dd8bfb",
+              "on-primary-container": "#3d0055",
+              "secondary": "#80f9c8",
+              "surface-dim": "#0e0e0e",
+              "primary-dim": "#ce7eec",
+              "on-tertiary": "#614700",
+              "on-background": "#ffffff",
+              "tertiary": "#ffd16f",
+              "on-secondary": "#005e43",
+              "surface-container-lowest": "#000000",
+              "inverse-primary": "#893da7",
+              "outline-variant": "#484847",
+              "tertiary-container": "#ffbf00",
+              "surface": "#0e0e0e",
+              "surface-container-high": "#201f1f",
+              "surface-container": "#1a1919",
+              "inverse-surface": "#fcf9f8",
+              "tertiary-fixed-dim": "#eeb200",
+              "surface-tint": "#e08efe",
+              "on-tertiary-fixed": "#3d2b00",
+              "surface-container-low": "#131313",
+              "on-secondary-fixed": "#004933",
+              "error-dim": "#d73357",
+              "on-secondary-fixed-variant": "#00694b",
+              "on-error-container": "#ffb2b9",
+              "on-error": "#490013",
+              "surface-variant": "#262626",
+              "tertiary-fixed": "#ffbf00",
+              "outline": "#767575",
+              "on-surface": "#ffffff",
+              "secondary-dim": "#71eaba",
+              "surface-container-highest": "#262626",
+              "primary": "#e08efe",
+              "primary-container": "#d180ef",
+              "secondary-container": "#006c4e",
+              "on-tertiary-fixed-variant": "#614700",
+              "inverse-on-surface": "#565555",
+              "status-booked": "#3b82f6",
+              "status-my-booking": "#e08efe",
+              "status-disabled": "#f97316",
+              "status-elderly": "#eab308"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .floorplan-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .road-texture {
+            background-color: #1a1a1a;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="bg-[#0e0e0e]/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(224,142,254,0.06)]">
+<div class="flex justify-between items-center px-10 h-20 w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tight text-purple-400 font-['Space_Grotesk']">SmartPark</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 min-h-screen px-6 md:px-10 pb-12 max-w-7xl mx-auto">
+<!-- Back to Dashboard -->
+<nav class="mb-6">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-xl transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span class="font-headline font-bold text-sm uppercase tracking-widest">Back to Dashboard</span>
+</button>
+</nav>
+<!-- Header Section -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex flex-col gap-4">
+<div>
+<h1 class="font-headline text-5xl font-bold text-white tracking-tight mb-2">Mall 1</h1>
+</div>
+<!-- Date Toggle Switch -->
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl">
+<button class="px-8 py-2.5 rounded-xl font-headline font-bold text-sm bg-primary text-on-primary transition-all active:scale-95 shadow-[0_0_20px_rgba(224,142,254,0.3)]">Level 1</button>
+<button class="px-8 py-2.5 rounded-xl font-headline font-bold text-sm text-on-surface-variant hover:text-white transition-all">Level 2</button>
+</div>
+</header>
+<!-- Floorplan Action Bar -->
+<section class="mb-8 flex flex-wrap items-center justify-between gap-4"><div class="flex items-center gap-1 bg-surface-container-highest p-1 rounded-xl w-fit mb-4 md:mb-0">
+<button class="px-6 py-2 rounded-lg font-headline font-bold text-xs bg-primary text-on-primary transition-all">Today</button>
+<button class="px-6 py-2 rounded-lg font-headline font-bold text-xs text-on-surface-variant hover:text-white transition-all">Tomorrow</button>
+</div>
+<button class="flex items-center gap-3 bg-primary/10 border border-primary/20 text-primary px-6 py-3 rounded-xl font-headline font-bold hover:bg-primary hover:text-on-primary transition-all shadow-[0_0_30px_rgba(224,142,254,0.1)]">
+<span class="material-symbols-outlined">near_me</span>
+                Navigate to Closest
+            </button>
+</section>
+<!-- The Kinetic Void Floorplan Canvas -->
+<section class="relative aspect-[16/9] w-full bg-surface-container-low rounded-3xl overflow-hidden floorplan-grid border border-white/5 flex items-center justify-center p-12 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]">
+<!-- Floorplan Container -->
+<div class="relative w-full max-w-5xl aspect-[2/1] border-2 border-dashed border-outline-variant/10 rounded-2xl flex flex-col">
+<!-- Upper Slot Area -->
+<div class="flex-grow grid grid-cols-[1fr_140px_1fr] h-full">
+<!-- Left Side: S1 & S2 -->
+<div class="grid grid-cols-2 gap-4 p-8">
+<!-- S1: Available (Green) -->
+<div class="relative group p-4 border-2 border-secondary bg-secondary/5 rounded-xl flex flex-col items-center justify-between transition-all hover:bg-secondary/10 py-6">
+<div class="text-center">
+<span class="text-secondary font-headline text-3xl font-bold block mb-1">S1</span>
+<span class="text-[10px] text-secondary/60 font-black tracking-widest uppercase">Available</span>
+</div>
+<div class="flex flex-col w-full gap-2 transition-opacity">
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-secondary/40 text-secondary hover:bg-secondary hover:text-on-secondary rounded-lg transition-colors">Book</button>
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-secondary/40 text-secondary hover:bg-secondary hover:text-on-secondary rounded-lg transition-colors">Navigate</button>
+</div>
+</div>
+<!-- S2: Occupied (Red) -->
+<div class="relative group p-4 border-2 border-error bg-error/5 rounded-xl flex flex-col items-center justify-between opacity-60 py-6">
+<div class="text-center">
+<span class="text-error font-headline text-3xl font-bold block mb-1">S2</span>
+<span class="text-[10px] text-error/60 font-black tracking-widest uppercase">Occupied</span>
+</div>
+<div class="flex flex-col w-full gap-2 transition-opacity">
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-error/40 text-error hover:bg-error hover:text-on-error rounded-lg transition-colors">Book</button>
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-error/40 text-error hover:bg-error hover:text-on-error rounded-lg transition-colors">Navigate</button>
+</div>
+</div>
+</div>
+<!-- Vertical Road (No markings) -->
+<div class="road-texture relative flex flex-col items-center">
+<div class="absolute inset-y-0 w-px border-l-2 border-dashed border-white/10 left-1/2 -translate-x-1/2"></div>
+<div class="absolute top-0 bottom-0 left-2 right-2 border-x border-white/5"></div>
+</div>
+<!-- Right Side: S3 & S4 -->
+<div class="grid grid-cols-2 gap-4 p-8">
+<!-- S3: Disabled (Orange) -->
+<div class="relative group p-4 border-2 border-status-disabled bg-status-disabled/5 rounded-xl flex flex-col items-center justify-between transition-all hover:bg-status-disabled/10 py-6">
+<div class="text-center">
+<span class="material-symbols-outlined text-status-disabled mb-1" style="font-variation-settings: 'FILL' 1;">accessible</span>
+<span class="text-status-disabled font-headline text-3xl font-bold block leading-none mb-1">S3</span>
+<span class="text-[10px] text-status-disabled/60 font-black tracking-widest uppercase">Available</span>
+</div>
+<div class="flex flex-col w-full gap-2 transition-opacity">
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-status-disabled/40 text-status-disabled hover:bg-status-disabled hover:text-white rounded-lg transition-colors">Book</button>
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-status-disabled/40 text-status-disabled hover:bg-status-disabled hover:text-white rounded-lg transition-colors">Navigate</button>
+</div>
+</div>
+<!-- S4: Elderly (Yellow) -->
+<div class="relative group p-4 border-2 border-status-elderly bg-status-elderly/5 rounded-xl flex flex-col items-center justify-between transition-all hover:bg-status-elderly/10 py-6">
+<div class="text-center">
+<span class="material-symbols-outlined text-status-elderly mb-1" style="font-variation-settings: 'FILL' 1;">elderly</span>
+<span class="text-status-elderly font-headline text-3xl font-bold block leading-none mb-1">S4</span>
+<span class="text-[10px] text-status-elderly/60 font-black tracking-widest uppercase">Available</span>
+</div>
+<div class="flex flex-col w-full gap-2 transition-opacity">
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-status-elderly/40 text-status-elderly hover:bg-status-elderly hover:text-on-tertiary-fixed-variant rounded-lg transition-colors">Book</button>
+<button class="w-full py-1.5 text-[10px] font-bold uppercase tracking-tighter border border-status-elderly/40 text-status-elderly hover:bg-status-elderly hover:text-on-tertiary-fixed-variant rounded-lg transition-colors">Navigate</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Horizontal Road at Bottom (No markings) -->
+<div class="h-28 road-texture border-t border-white/10 flex items-center justify-center relative">
+<div class="absolute inset-x-0 h-px border-t-2 border-dashed border-white/10 top-1/2 -translate-y-1/2"></div>
+<div class="absolute inset-x-0 top-2 bottom-2 border-y border-white/5"></div>
+</div>
+</div>
+</section><div class="mt-12 flex flex-wrap justify-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(128,249,200,0.5)]"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Available</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-error"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Occupied</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-status-booked shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Booked</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-status-my-booking shadow-[0_0_8px_rgba(224,142,254,0.5)]"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">My Booking</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-status-disabled shadow-[0_0_8px_rgba(249,115,22,0.5)]"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Disabled</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-white/5">
+<div class="w-2.5 h-2.5 rounded-full bg-status-elderly shadow-[0_0_8px_rgba(234,179,8,0.5)]"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Elderly</span>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+opencv-python
+flask
+Pillow
+pillow-heif
+ultralytics

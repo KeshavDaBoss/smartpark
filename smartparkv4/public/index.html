@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SmartPark</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <div class="header">
+    <img src="logo.png" alt="SmartPark Logo" class="logo">
+  </div>
+  <nav>
+    <a href="#" onclick="showPage('login-page')">Login / Signup</a>
+    <a href="#" onclick="showPage('slots-page')">Parking Lot</a>
+    <a href="#" onclick="showPage('bookings-page')">My Bookings</a>
+  </nav>
+</div>
+
+<div class="main-content">
+  <div id="login-page" class="page">
+    <h2>Login / Signup</h2>
+    <div class="login-section">
+      <input id="u" placeholder="username">
+      <input id="p" type="password" placeholder="password">
+      <button onclick="signup()">Signup</button>
+      <button onclick="login()">Login</button>
+      <p id="msg"></p>
+    </div>
+  </div>
+
+  <div id="slots-page" class="page" style="display:none;">
+    <h2>Parking Lot Status</h2>
+    <div class="parking-lot">
+      <div class="entry-lane">entry</div>
+      <div id="A1" class="slot"></div>
+      <div id="A2" class="slot"></div>
+      <div id="A3" class="slot"></div>
+      <div id="A4" class="slot"></div>
+    </div>
+  </div>
+
+  <div id="bookings-page" class="page" style="display:none;">
+    <div class="bookings-section">
+      <h2>My Bookings</h2>
+      <div id="my"></div>
+    </div>
+    <div class="bookings-section">
+      <h2>Book a Slot</h2>
+      <div id="book-slots"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let user="";
+
+const today = new Date().toISOString().split("T")[0];
+const tomorrow = new Date(Date.now()+86400000).toISOString().split("T")[0];
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.style.display = 'none';
+  });
+  document.getElementById(pageId).style.display = 'block';
+}
+
+function signup(){
+  fetch("/signup",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({username:u.value,password:p.value})})
+  .then(r=>r.json()).then(d=>msg.innerText=d.message);
+}
+
+function login(){
+  fetch("/login",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({username:u.value,password:p.value})})
+  .then(r=>r.json()).then(d=>{
+    msg.innerText=d.message;
+    if(d.success){
+      user=u.value;
+      load();
+      showPage('slots-page');
+    }
+  });
+}
+
+function load(){
+  fetch("/status").then(r=>r.json()).then(d=>{
+    d.slots.forEach(s=>{
+      const slotElement = document.getElementById(s.id);
+      if (!slotElement) return;
+
+      const bookedToday = d.bookings.some(b=>b.slot===s.id && b.date===today);
+      
+      let statusClass = 'available';
+      if (s.occupied) {
+        statusClass = 'occupied';
+      } else if (bookedToday) {
+        statusClass = 'booked-today';
+      }
+
+      slotElement.className = 'slot ' + statusClass;
+
+      slotElement.innerHTML = `
+        <div class="slot-id">${s.id}</div>
+        <div class="slot-status">
+          ${s.occupied ? "OCCUPIED" : (bookedToday ? "BOOKED TODAY" : "AVAILABLE")}
+        </div>
+      `;
+    });
+
+    if(user){
+      const bookSlotsContainer = document.getElementById('book-slots');
+      bookSlotsContainer.innerHTML = '';
+      d.slots.forEach(s => {
+        if (["A1", "A2"].includes(s.id)) {
+          bookSlotsContainer.innerHTML += `
+            <div class="booking-option">
+              <span>Slot ${s.id}</span>
+              <button onclick="book('${s.id}','${today}')">Book Today</button>
+              <button onclick="book('${s.id}','${tomorrow}')">Book Tomorrow</button>
+            </div>
+          `;
+        }
+      });
+    }
+  });
+
+  if(user){
+    fetch("/mybookings/"+user).then(r=>r.json()).then(b=>{
+      my.innerHTML="";
+      b.forEach(x=>{
+        my.innerHTML+=`
+          <div>
+            <span>${x.slot} | ${x.date}</span>
+            <button onclick="cancel('${x.slot}','${x.date}')">Cancel</button>
+          </div>`;
+      });
+    });
+  }
+}
+
+function book(slot,date){
+  fetch("/book",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({slot,user,date})})
+  .then(r=>r.json()).then(d=>{alert(d.message); load();});
+}
+
+function cancel(slot,date){
+  fetch("/cancel",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({slot,user,date})})
+  .then(()=>load());
+}
+
+setInterval(load,3000);
+load(); // Initial load
+showPage('login-page'); // Show login page by default
+</script>
+</body>
+</html>
