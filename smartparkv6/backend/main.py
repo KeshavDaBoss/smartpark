@@ -12,6 +12,7 @@ from .database import slots_db, users_db, bookings_db, init_db, get_user_by_user
 from .hardware_service import setup_gpio, update_pi_sensors, set_led, PI_PINOUT
 
 CAMERA_STALE_SECONDS = int(os.getenv("CAMERA_STALE_SECONDS", "12"))
+CAMERA_SLOT_PERSISTENCE_SECONDS = float(os.getenv("SMARTPARK_SLOT_PERSISTENCE_TIME", "3.0"))
 DATASET_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dataset"))
 DATASET_CARS_DIR = os.path.join(DATASET_ROOT, "Cars")
 DATASET_NOT_CARS_DIR = os.path.join(DATASET_ROOT, "Not cars")
@@ -26,6 +27,8 @@ camera_ingest_stats = {
     "sources": {},
     "last_payload": None,
 }
+
+camera_slot_last_occupied_at = {}
 
 dataset_reliability_cache = {
     "last_checked_at": 0.0,
@@ -359,8 +362,15 @@ def receive_camera_data(data: CameraSensorData):
         if normalized in {"occupied", "1", "true", "yes"}:
             slot.status = SlotStatus.OCCUPIED
             occupied_count += 1
+            camera_slot_last_occupied_at[slot_id] = now
         elif normalized in {"free", "0", "false", "no"}:
-            slot.status = SlotStatus.FREE
+            # Mirror detector-side persistence so brief misses do not flap dashboard state.
+            last_occupied_at = float(camera_slot_last_occupied_at.get(slot_id, 0.0))
+            if now - last_occupied_at <= CAMERA_SLOT_PERSISTENCE_SECONDS:
+                slot.status = SlotStatus.OCCUPIED
+                occupied_count += 1
+            else:
+                slot.status = SlotStatus.FREE
         else:
             # Unknown payload value: keep last slot status rather than forcing FREE.
             continue
