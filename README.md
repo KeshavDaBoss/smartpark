@@ -1,4 +1,4 @@
-# smartpark
+# SmartPark
 
 SmartPark is a smart parking system project developed across multiple iterations.
 This repository contains firmware prototypes, web dashboards, backend services, and computer-vision based parking detection.
@@ -40,3 +40,5 @@ Use smartparkv6 for active development.
 
 - Hardware setup helpers are included in version folders, for example setup_pi.sh.
 - Older versions are retained for comparison, debugging, and historical reference.
+
+- Maintained my Pratham Yadav and Kalepu Yashvardhan
